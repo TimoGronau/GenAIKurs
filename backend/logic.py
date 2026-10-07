@@ -78,6 +78,29 @@ def missing_ingredients(recipe: dict, pantry: list[dict]) -> list[dict]:
     return missing
 
 
+def add_to_shopping_list(missing: list[dict], items: list[dict]) -> tuple[list[dict], int]:
+    """Fuegt Fehlmengen hinzu und summiert gleiche Zutaten mit gleicher Einheit."""
+    result = [dict(item) for item in items]
+    for ingredient in missing:
+        match = next((
+            item for item in result
+            if normalize_name(item.get("name")) == normalize_name(ingredient.get("name"))
+            and normalize_name(item.get("unit")) == normalize_name(ingredient.get("unit"))
+        ), None)
+        if match:
+            match["amount"] = _round(_num(match.get("amount")) + _num(ingredient.get("amount")))
+            match["done"] = False
+        else:
+            result.append({
+                "id": ingredient.get("id"),
+                "name": ingredient.get("name"),
+                "amount": _round(_num(ingredient.get("amount"))),
+                "unit": ingredient.get("unit"),
+                "done": False,
+            })
+    return result, len(missing)
+
+
 def _by_name_key(name) -> str:
     return normalize_name(name)
 

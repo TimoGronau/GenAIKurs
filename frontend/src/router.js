@@ -4,6 +4,7 @@ import RecipeDetail from "./views/RecipeDetail.vue";
 import RecipeForm from "./views/RecipeForm.vue";
 import Pantry from "./views/Pantry.vue";
 import Today from "./views/Today.vue";
+import ShoppingList from "./views/ShoppingList.vue";
 
 const routes = [
   { path: "/", redirect: "/recipes" },
@@ -13,6 +14,7 @@ const routes = [
   { path: "/recipes/:id/edit", name: "recipe-edit", component: RecipeForm, props: true },
   { path: "/pantry", name: "pantry", component: Pantry },
   { path: "/today", name: "today", component: Today },
+  { path: "/shopping-list", name: "shopping-list", component: ShoppingList },
 ];
 
 export default createRouter({

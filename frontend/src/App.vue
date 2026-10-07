@@ -11,6 +11,7 @@ const flash = useFlash();
       <router-link class="tab" to="/recipes">Rezepte</router-link>
       <router-link class="tab" to="/pantry">Vorrat</router-link>
       <router-link class="tab" to="/today">Heute kochen</router-link>
+      <router-link class="tab" to="/shopping-list">Einkaufsliste</router-link>
     </nav>
   </header>
 

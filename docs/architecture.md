@@ -1,7 +1,7 @@
 # Architektur – Rezept-App „Kochbuch"
 
 Dieses Dokument beschreibt den Tech-Stack und die Architektur für die Rezept-App,
-die in den [User Stories](user-stories.md) (US-01 bis US-12) beschrieben ist.
+die in den [User Stories](user-stories.md) (US-01 bis US-16) beschrieben ist.
 
 Es ist bewusst für **Einsteiger in die moderne Web-Entwicklung** geschrieben und
 erklärt nicht nur *was*, sondern auch *warum* eine Technologie gewählt wurde.
@@ -117,7 +117,8 @@ GenAIKurs/
 │     │  ├─ RecipeDetail.vue   # US-03, US-05, US-12
 │     │  ├─ RecipeForm.vue     # US-01, US-04
 │     │  ├─ Pantry.vue         # US-07, US-08, US-09
-│     │  └─ Today.vue          # US-10, US-11
+│     │  ├─ Today.vue          # US-10, US-11
+│     │  └─ ShoppingList.vue   # US-13
 │     └─ components/       # wiederverwendbare Bausteine
 │        ├─ IngredientRow.vue
 │        └─ BadgeCookable.vue
@@ -130,7 +131,8 @@ GenAIKurs/
    ├─ logic.py             # Fachlogik (kochbar?, Vorrat abziehen …)
    └─ data/
       ├─ recipes.json
-      └─ pantry.json
+      ├─ pantry.json
+      └─ shopping_list.json
 ```
 
 ---
@@ -181,6 +183,10 @@ einer oder mehreren User Stories zugeordnet.
 | `POST` | `/api/pantry` | Lebensmittel hinzufügen | US-07 |
 | `PUT` | `/api/pantry/{id}` | Menge ändern | US-09 |
 | `DELETE` | `/api/pantry/{id}` | Lebensmittel entfernen | US-09 |
+| `GET` | `/api/shopping-list` | Einkaufsliste anzeigen | US-13 |
+| `POST` | `/api/recipes/{id}/shopping-list` | Fehlende Rezeptzutaten ergänzen | US-13 |
+| `PATCH` | `/api/shopping-list/{id}` | Eintrag erledigen oder wieder öffnen | US-13 |
+| `DELETE` | `/api/shopping-list/{id}` | Eintrag entfernen | US-13 |
 | `GET` | `/api/cookable` | Kochbare & fast kochbare Rezepte | US-10, US-11 |
 | `POST` | `/api/recipes/{id}/cook` | Vorrat nach dem Kochen abziehen | US-12 |
 

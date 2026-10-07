@@ -22,3 +22,10 @@ Die User Stories sind thematisch gruppiert und jeweils in eine eigene Datei ausg
 - [US-10 – Kochbare Rezepte anzeigen](user-stories/US-10-kochbare-rezepte-anzeigen.md)
 - [US-11 – Fast kochbare Rezepte anzeigen](user-stories/US-11-fast-kochbare-rezepte-anzeigen.md)
 - [US-12 – Vorrat nach dem Kochen abziehen (optional)](user-stories/US-12-vorrat-nach-dem-kochen-abziehen.md)
+
+## Einkauf planen und Rezepte organisieren
+
+- [US-13 – Einkaufsliste aus fehlenden Zutaten erstellen](user-stories/US-13-einkaufsliste-aus-fehlenden-zutaten-erstellen.md)
+- [US-14 – Rezeptportionen anpassen](user-stories/US-14-rezeptportionen-anpassen.md)
+- [US-15 – Rezepte als Favoriten markieren](user-stories/US-15-rezepte-als-favoriten-markieren.md)
+- [US-16 – Rezepte mit Kategorien versehen](user-stories/US-16-rezepte-mit-kategorien-versehen.md)

@@ -63,3 +63,15 @@ class PantryItemIn(BaseModel):
 
 class PantryItem(PantryItemIn):
     id: str
+
+
+class ShoppingListItem(BaseModel):
+    id: str
+    name: str
+    amount: float
+    unit: str
+    done: bool = False
+
+
+class ShoppingListItemUpdate(BaseModel):
+    done: bool

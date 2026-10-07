@@ -30,12 +30,21 @@ export const api = {
   updateRecipe: (id, recipe) => request(`/recipes/${id}`, { method: "PUT", body: JSON.stringify(recipe) }),
   deleteRecipe: (id) => request(`/recipes/${id}`, { method: "DELETE" }),
   cookRecipe: (id) => request(`/recipes/${id}/cook`, { method: "POST" }),
+  addRecipeMissingToShoppingList: (id) => request(`/recipes/${id}/shopping-list`, { method: "POST" }),
 
   // Vorrat
   listPantry: () => request("/pantry"),
   addPantry: (item) => request("/pantry", { method: "POST", body: JSON.stringify(item) }),
   updatePantry: (id, item) => request(`/pantry/${id}`, { method: "PUT", body: JSON.stringify(item) }),
   deletePantry: (id) => request(`/pantry/${id}`, { method: "DELETE" }),
+
+  // Einkaufsliste
+  listShoppingList: () => request("/shopping-list"),
+  updateShoppingListItem: (id, item) => request(`/shopping-list/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(item),
+  }),
+  deleteShoppingListItem: (id) => request(`/shopping-list/${id}`, { method: "DELETE" }),
 
   // Heute kochen
   cookable: (maxMissing = 3) => request(`/cookable?max_missing=${maxMissing}`),

@@ -10,7 +10,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import logic
 import storage
-from models import PantryItem, PantryItemIn, Recipe, RecipeIn
+from models import (
+    PantryItem,
+    PantryItemIn,
+    Recipe,
+    RecipeIn,
+    ShoppingListItem,
+    ShoppingListItemUpdate,
+)
 
 app = FastAPI(title="Kochbuch API", version="1.0.0")
 
@@ -84,6 +91,22 @@ def cook_recipe(recipe_id: str) -> list[dict]:
     return pantry
 
 
+@app.post("/api/recipes/{recipe_id}/shopping-list")
+def add_recipe_missing_to_shopping_list(recipe_id: str) -> dict:
+    """US-13: fehlende Rezeptzutaten zur Einkaufsliste hinzufügen."""
+    recipe = _find(storage.read_recipes(), recipe_id)
+    if recipe is None:
+        raise HTTPException(status_code=404, detail="Rezept nicht gefunden.")
+    missing = [
+        {**ingredient, "id": storage.new_id()}
+        for ingredient in logic.missing_ingredients(recipe, storage.read_pantry())
+    ]
+    items, added = logic.add_to_shopping_list(missing, storage.read_shopping_list())
+    if added:
+        storage.write_shopping_list(items)
+    return {"items": items, "added": added}
+
+
 # ---------- Vorrat ----------
 
 @app.get("/api/pantry", response_model=list[PantryItem])
@@ -125,6 +148,35 @@ def delete_pantry(item_id: str) -> None:
     if _find(pantry, item_id) is None:
         raise HTTPException(status_code=404, detail="Eintrag nicht gefunden.")
     storage.write_pantry([i for i in pantry if i.get("id") != item_id])
+
+
+# ---------- Einkaufsliste ----------
+
+@app.get("/api/shopping-list", response_model=list[ShoppingListItem])
+def list_shopping_list() -> list[dict]:
+    """US-13: Einkaufsliste anzeigen."""
+    return storage.read_shopping_list()
+
+
+@app.patch("/api/shopping-list/{item_id}", response_model=ShoppingListItem)
+def update_shopping_list_item(item_id: str, payload: ShoppingListItemUpdate) -> dict:
+    """US-13: Eintrag als erledigt markieren oder wieder öffnen."""
+    items = storage.read_shopping_list()
+    item = _find(items, item_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail="Eintrag nicht gefunden.")
+    updated = {**item, "done": payload.done}
+    storage.write_shopping_list([updated if i.get("id") == item_id else i for i in items])
+    return updated
+
+
+@app.delete("/api/shopping-list/{item_id}", status_code=204)
+def delete_shopping_list_item(item_id: str) -> None:
+    """US-13: Eintrag von der Einkaufsliste entfernen."""
+    items = storage.read_shopping_list()
+    if _find(items, item_id) is None:
+        raise HTTPException(status_code=404, detail="Eintrag nicht gefunden.")
+    storage.write_shopping_list([i for i in items if i.get("id") != item_id])
 
 
 # ---------- Heute kochen ----------

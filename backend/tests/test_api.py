@@ -11,6 +11,7 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setattr(storage, "DATA_DIR", tmp_path)
     monkeypatch.setattr(storage, "RECIPES_FILE", tmp_path / "recipes.json")
     monkeypatch.setattr(storage, "PANTRY_FILE", tmp_path / "pantry.json")
+    monkeypatch.setattr(storage, "SHOPPING_LIST_FILE", tmp_path / "shopping_list.json")
     return TestClient(main.app)
 
 
@@ -117,3 +118,52 @@ def test_unknown_pantry_item_returns_not_found(client):
     response = client.delete("/api/pantry/unknown")
 
     assert response.status_code == 404
+
+
+# Prüft Fehlmengen, Zusammenführen, Erledigt-Status und Entfernen auf der Einkaufsliste.
+def test_shopping_list_adds_missing_amounts_and_supports_item_actions(client):
+    recipe = client.post(
+        "/api/recipes",
+        json={
+            "name": "Pasta",
+            "ingredients": [
+                {"name": "Nudeln", "amount": 500, "unit": "g"},
+                {"name": "Salz", "amount": 1, "unit": "Prise"},
+            ],
+        },
+    ).json()
+    client.post("/api/pantry", json={"name": "Nudeln", "amount": 0.3, "unit": "kg"})
+
+    first = client.post(f"/api/recipes/{recipe['id']}/shopping-list").json()
+    assert first["added"] == 2
+    assert {(item["name"], item["amount"], item["unit"]) for item in first["items"]} == {
+        ("Nudeln", 200, "g"),
+        ("Salz", 1, "Prise"),
+    }
+    noodles = next(item for item in first["items"] if item["name"] == "Nudeln")
+    client.patch(f"/api/shopping-list/{noodles['id']}", json={"done": True})
+
+    second = client.post(f"/api/recipes/{recipe['id']}/shopping-list").json()
+    noodles = next(item for item in second["items"] if item["name"] == "Nudeln")
+    assert noodles["amount"] == 400
+    assert noodles["done"] is False
+
+    updated = client.patch(
+        f"/api/shopping-list/{noodles['id']}", json={"done": True}
+    )
+    assert updated.json()["done"] is True
+    assert client.delete(f"/api/shopping-list/{noodles['id']}").status_code == 204
+    assert len(client.get("/api/shopping-list").json()) == 1
+
+
+def test_shopping_list_reports_recipe_with_no_missing_ingredients(client):
+    recipe = client.post(
+        "/api/recipes",
+        json={"name": "Toast", "ingredients": [{"name": "Brot", "amount": 2, "unit": "Stk"}]},
+    ).json()
+    client.post("/api/pantry", json={"name": "Brot", "amount": 2, "unit": "Stk"})
+
+    response = client.post(f"/api/recipes/{recipe['id']}/shopping-list")
+
+    assert response.status_code == 200
+    assert response.json() == {"items": [], "added": 0}

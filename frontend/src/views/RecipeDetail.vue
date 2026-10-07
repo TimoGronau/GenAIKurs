@@ -11,6 +11,7 @@ const recipe = ref(null);
 const cookable = ref(false);
 const missing = ref([]);
 const error = ref("");
+const availabilityLoaded = ref(false);
 
 async function load() {
   try {
@@ -19,6 +20,7 @@ async function load() {
     cookable.value = data.cookable.some((r) => r.id === props.id);
     const entry = data.almost.find((a) => a.recipe.id === props.id);
     missing.value = entry ? entry.missing : [];
+    availabilityLoaded.value = true;
   } catch (e) {
     error.value = e.message;
   }
@@ -43,6 +45,15 @@ async function cook() {
   toast("Vorrat aktualisiert. Guten Appetit!");
   load();
 }
+
+async function addMissingToShoppingList() {
+  const result = await api.addRecipeMissingToShoppingList(props.id);
+  if (!result.added) {
+    toast("Alle Zutaten sind ausreichend im Vorrat.");
+    return;
+  }
+  toast(`${result.added} fehlende Zutat(en) zur Einkaufsliste hinzugefügt.`);
+}
 </script>
 
 <template>
@@ -55,18 +66,24 @@ async function cook() {
     <h2>{{ recipe.name }}</h2>
 
     <span v-if="cookable" class="badge ok">Mit deinem Vorrat kochbar</span>
-    <span v-else class="badge warn">{{ missingCount || "Mehrere" }} Zutat(en) fehlen</span>
+    <span v-else class="badge warn">{{ missingCount }} Zutat(en) fehlen</span>
 
     <h3>Zutaten</h3>
     <ul>
       <li v-for="(i, idx) in recipe.ingredients" :key="idx">{{ fmt(i.amount, i.unit) }} {{ i.name }}</li>
     </ul>
+    <p v-if="availabilityLoaded && missingCount === 0" class="empty">
+      Alle Zutaten sind ausreichend im Vorrat; es muss nichts eingekauft werden.
+    </p>
 
     <h3>Zubereitung</h3>
     <div class="card steps">{{ recipe.steps || "Keine Zubereitungsschritte erfasst." }}</div>
 
     <div class="actions">
       <router-link class="btn" :to="{ name: 'recipe-edit', params: { id: recipe.id } }">Bearbeiten</router-link>
+      <button class="btn" :disabled="!availabilityLoaded || missingCount === 0" @click="addMissingToShoppingList">
+        Fehlende Zutaten zur Einkaufsliste
+      </button>
       <button class="btn" :disabled="!cookable" @click="cook">Gekocht – Vorrat abziehen</button>
       <button class="btn danger" @click="remove">Löschen</button>
     </div>

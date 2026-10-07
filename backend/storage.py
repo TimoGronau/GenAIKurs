@@ -8,6 +8,7 @@ from pathlib import Path
 DATA_DIR = Path(__file__).parent / "data"
 RECIPES_FILE = DATA_DIR / "recipes.json"
 PANTRY_FILE = DATA_DIR / "pantry.json"
+SHOPPING_LIST_FILE = DATA_DIR / "shopping_list.json"
 
 
 def new_id() -> str:
@@ -45,3 +46,11 @@ def read_pantry() -> list[dict]:
 
 def write_pantry(pantry: list[dict]) -> None:
     _write(PANTRY_FILE, pantry)
+
+
+def read_shopping_list() -> list[dict]:
+    return _read(SHOPPING_LIST_FILE)
+
+
+def write_shopping_list(items: list[dict]) -> None:
+    _write(SHOPPING_LIST_FILE, items)
