@@ -1,7 +1,7 @@
 # Kochbuch-App
 
-Eine Rezept-App mit Vue 3 im Frontend und FastAPI im Backend. Rezepte und Vorrat
-werden in JSON-Dateien unter `backend/data/` gespeichert.
+Eine Rezept-App mit Vue 3 im Frontend und FastAPI im Backend. Rezepte, Vorrat und
+Einkaufsliste werden in JSON-Dateien unter `backend/data/` gespeichert.
 
 ## Voraussetzungen
 
@@ -101,6 +101,7 @@ Die Beispieldaten und alle Änderungen liegen in:
 
 - `backend/data/recipes.json`
 - `backend/data/pantry.json`
+- `backend/data/shopping_list.json`
 
 Diese Dateien lassen sich sichern oder bearbeiten. Die App benötigt keine
 separate Datenbank.
@@ -111,6 +112,7 @@ separate Datenbank.
 - `backend/`: FastAPI-Endpunkte, Fachlogik und JSON-Dateispeicherung
 - `app/`: älterer HTML-/JavaScript-Prototyp, unabhängig von der Vue-App
 - `docs/architecture.md`: Beschreibung der Architektur und Technologieauswahl
+- `docs/anwenderdokumentation.md`: Anleitung zur Bedienung der verfügbaren Funktionen
 - `docs/definition_done.md`: Qualitätskriterien für abgeschlossene Implementierungen
 - `docs/user-stories.md`: Übersicht der User Stories und Akzeptanzkriterien
 - `docs/definition_of_ready.md`: Vorschlag für die Definition of Ready

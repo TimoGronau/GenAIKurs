@@ -27,6 +27,8 @@ erklärt nicht nur *was*, sondern auch *warum* eine Technologie gewählt wurde.
 Die App besteht aus **zwei getrennten Teilen**, die über eine **REST-API** (HTTP + JSON)
 miteinander reden. Das ist das Standard-Muster moderner Web-Apps.
 
+> Die ergänzenden C4-Sichten (C1–C3) stehen in der [C4-Architekturdokumentation](c4-architecture.md).
+
 ```mermaid
 flowchart LR
     subgraph Browser["🖥️ Browser (Client)"]
