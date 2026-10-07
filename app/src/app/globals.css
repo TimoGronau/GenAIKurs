@@ -1,0 +1,68 @@
+/* Eigene Akzentfarbe über Bootstrap: warmes Paprika-Rot statt Standardblau. */
+:root,
+[data-bs-theme="light"] {
+  --kb-accent: #b8502a;
+  --kb-accent-hover: #9c4222;
+  --kb-accent-contrast: #ffffff;
+  --bs-body-bg: #faf7f2;
+  --bs-secondary-bg: #f1ece4;
+  --bs-border-color: #e3dacf;
+  --bs-link-color-rgb: 184, 80, 42;
+  --bs-link-hover-color-rgb: 156, 66, 34;
+}
+
+[data-bs-theme="dark"] {
+  --kb-accent: #e07a4f;
+  --kb-accent-hover: #ea946f;
+  --kb-accent-contrast: #1c1917;
+  --bs-body-bg: #1c1917;
+  --bs-secondary-bg: #2a2522;
+  --bs-border-color: #3d3631;
+  --bs-link-color-rgb: 224, 122, 79;
+  --bs-link-hover-color-rgb: 234, 148, 111;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--kb-accent);
+  --bs-btn-border-color: var(--kb-accent);
+  --bs-btn-color: var(--kb-accent-contrast);
+  --bs-btn-hover-bg: var(--kb-accent-hover);
+  --bs-btn-hover-border-color: var(--kb-accent-hover);
+  --bs-btn-hover-color: var(--kb-accent-contrast);
+  --bs-btn-active-bg: var(--kb-accent-hover);
+  --bs-btn-active-border-color: var(--kb-accent-hover);
+  --bs-btn-active-color: var(--kb-accent-contrast);
+  --bs-btn-disabled-bg: var(--kb-accent);
+  --bs-btn-disabled-border-color: var(--kb-accent);
+  --bs-btn-disabled-color: var(--kb-accent-contrast);
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--kb-accent);
+  --bs-nav-pills-link-active-color: var(--kb-accent-contrast);
+  --bs-nav-link-color: var(--bs-secondary-color);
+  --bs-nav-link-hover-color: var(--bs-body-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--kb-accent);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--kb-accent) 25%, transparent);
+}
+
+.steps {
+  white-space: pre-wrap;
+}
+
+.amount-input {
+  width: 6.5rem;
+}
+
+.list-group-item-action {
+  cursor: pointer;
+}
+
+/* Sicherheitsabfrage: Bootstrap-Modal ohne Bootstrap-JavaScript, von React gesteuert. */
+.modal.kb-open {
+  display: block;
+}
