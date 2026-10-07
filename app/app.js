@@ -107,6 +107,23 @@
       options.map((u) => h("option", { value: u, selected: u === value }, u)));
   }
 
+  // Eigene Sicherheitsabfrage statt confirm(), damit sie überall funktioniert.
+  function ask(message, confirmLabel, danger) {
+    return new Promise((resolve) => {
+      const close = (result) => { overlay.remove(); resolve(result); };
+      const ok = h("button", { class: "btn " + (danger ? "danger-solid" : "primary"), onclick: () => close(true) }, confirmLabel);
+      const overlay = h("div", { class: "overlay", onclick: (e) => { if (e.target === overlay) close(false); } },
+        h("div", { class: "dialog", role: "alertdialog", "aria-modal": "true", "aria-label": message,
+          onkeydown: (e) => { if (e.key === "Escape") close(false); } },
+          h("p", {}, message),
+          h("div", { class: "actions" },
+            ok,
+            h("button", { class: "btn", onclick: () => close(false) }, "Abbrechen"))));
+      document.body.append(overlay);
+      ok.focus();
+    });
+  }
+
   function toast(message) {
     const el = h("div", { class: "toast", role: "status" }, message);
     document.body.append(el);
@@ -180,16 +197,16 @@
     ];
   }
 
-  function removeRecipe(recipe) {
-    if (!confirm(`Rezept „${recipe.name}“ wirklich löschen?`)) return;
+  async function removeRecipe(recipe) {
+    if (!(await ask(`Rezept „${recipe.name}“ wirklich löschen?`, "Löschen", true))) return;
     state.recipes = state.recipes.filter((r) => r.id !== recipe.id);
     save();
     toast("Rezept gelöscht.");
     go({ view: "recipes" });
   }
 
-  function cook(recipe) {
-    if (!confirm(`Zutaten für „${recipe.name}“ vom Vorrat abziehen?`)) return;
+  async function cook(recipe) {
+    if (!(await ask(`Zutaten für „${recipe.name}“ vom Vorrat abziehen?`, "Abziehen"))) return;
     state.pantry = Logic.deductRecipe(recipe, state.pantry);
     save();
     toast("Vorrat aktualisiert. Guten Appetit!");
