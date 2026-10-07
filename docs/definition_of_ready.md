@@ -1,63 +1,38 @@
-# User Stories – Rezeptverwaltung / Kochbuch
+# Definition of Ready (Vorschlag)
 
-## Rezepte verwalten
+Die Definition of Ready (DoR) beschreibt, wann eine User Story ausreichend
+verstanden und vorbereitet ist, damit die Umsetzung beginnen kann. Sie soll
+Unklarheiten früh sichtbar machen und ist für dieses Lernprojekt bewusst schlank
+gehalten.
 
-**US-01 – Rezept anlegen**
-Als Nutzer möchte ich ein neues Rezept mit Name, Zutaten (inkl. Menge und Einheit) und Zubereitungsschritten anlegen, damit ich meine Rezepte an einem Ort sammeln kann.
+## Checkliste
 
-- Akzeptanzkriterien:
-  - Name ist ein Pflichtfeld
-  - Mindestens eine Zutat muss angegeben werden
-  - Zubereitungsschritte können als Text erfasst werden
+Eine User Story ist bereit, wenn die folgenden Punkte zutreffen:
 
-**US-02 – Rezeptübersicht anzeigen**
-Als Nutzer möchte ich eine Liste aller meiner Rezepte sehen, damit ich einen schnellen Überblick habe.
+- [ ] **Verständlich:** Ziel und gewünschtes Verhalten sind für das Team nachvollziehbar.
+- [ ] **Nutzerwert:** Es ist klar, wem die Story hilft und welchen Nutzen sie hat.
+- [ ] **Abgrenzung:** Der Umfang ist klar; wichtige Nicht-Ziele sind benannt, falls nötig.
+- [ ] **Akzeptanzkriterien:** Das erwartete Ergebnis ist konkret und überprüfbar beschrieben.
+- [ ] **Sonderfälle:** Relevante Fehler-, Leer- oder Grenzfälle sind berücksichtigt.
+- [ ] **Abhängigkeiten:** Benötigte Daten, andere Stories oder technische Voraussetzungen sind bekannt.
+- [ ] **UI und Daten:** Falls relevant, sind die benötigten Ansichten, Eingaben und Datenfelder geklärt.
+- [ ] **Testbarkeit:** Es ist klar, wie geprüft werden kann, ob die Story erfüllt ist.
+- [ ] **Umfang:** Die Story ist klein genug, um sie in überschaubaren Schritten umzusetzen.
 
-- Akzeptanzkriterien:
-  - Alle Rezepte werden mit Namen angezeigt
-  - Die Liste ist alphabetisch sortiert
+Nicht jeder Punkt ist für jede Story gleich relevant. Nicht zutreffende Punkte
+können als solche markiert werden; offene Fragen sollten vor dem Start geklärt oder
+als konkrete Annahmen festgehalten werden.
 
-**US-03 – Rezept im Detail ansehen**
-Als Nutzer möchte ich ein Rezept öffnen und alle Zutaten sowie die Zubereitung sehen, damit ich danach kochen kann.
+## Abgrenzung zur Definition of Done
 
-**US-04 – Rezept bearbeiten**
-Als Nutzer möchte ich ein bestehendes Rezept ändern können, damit ich Fehler korrigieren oder das Rezept anpassen kann.
+Die DoR gilt **vor** Beginn der Umsetzung: Sie hilft zu entscheiden, ob eine Story
+startklar ist. Eine Definition of Done beschreibt dagegen, wann die Umsetzung
+fertig ist, zum Beispiel wenn Akzeptanzkriterien erfüllt und Tests erfolgreich
+ausgeführt wurden.
 
-**US-05 – Rezept löschen**
-Als Nutzer möchte ich ein Rezept löschen können, damit meine Sammlung übersichtlich bleibt.
+## Anwendung auf dieses Projekt
 
-- Akzeptanzkriterien:
-  - Vor dem Löschen erscheint eine Sicherheitsabfrage
-
-**US-06 – Rezepte suchen**
-Als Nutzer möchte ich Rezepte nach Namen oder Zutat suchen, damit ich ein bestimmtes Rezept schnell finde.
-
-## Vorrat verwalten
-
-**US-07 – Lebensmittel zum Vorrat hinzufügen**
-Als Nutzer möchte ich meine verfügbaren Lebensmittel (mit Menge) erfassen, damit die App weiß, was ich zu Hause habe.
-
-**US-08 – Vorrat anzeigen**
-Als Nutzer möchte ich eine Liste meiner verfügbaren Lebensmittel sehen, damit ich weiß, was noch da ist.
-
-**US-09 – Vorrat aktualisieren**
-Als Nutzer möchte ich Mengen ändern oder Lebensmittel aus dem Vorrat entfernen, damit der Vorrat aktuell bleibt.
-
-## Was kann ich heute kochen?
-
-**US-10 – Kochbare Rezepte anzeigen**
-Als Nutzer möchte ich sehen, welche Rezepte ich mit meinen aktuell verfügbaren Lebensmitteln kochen kann, damit ich schnell entscheiden kann, was es heute gibt.
-
-- Akzeptanzkriterien:
-  - Es werden nur Rezepte angezeigt, für die alle Zutaten in ausreichender Menge vorhanden sind
-  - Ist kein Rezept kochbar, erscheint ein entsprechender Hinweis
-
-**US-11 – Fast kochbare Rezepte anzeigen**
-Als Nutzer möchte ich auch Rezepte sehen, bei denen nur wenige Zutaten fehlen, inklusive der Liste der fehlenden Zutaten, damit ich ggf. nur kurz etwas einkaufen muss.
-
-- Akzeptanzkriterien:
-  - Rezepte sind nach Anzahl fehlender Zutaten sortiert
-  - Fehlende Zutaten werden pro Rezept angezeigt
-
-**US-12 – Vorrat nach dem Kochen abziehen** *(optional)*
-Als Nutzer möchte ich nach dem Kochen eines Rezepts die verbrauchten Zutaten automatisch vom Vorrat abziehen lassen, damit ich den Vorrat nicht manuell pflegen muss.
+Die Stories und ihre Akzeptanzkriterien stehen in der [Story-Übersicht](user-stories.md)
+und den dort verlinkten Einzeldateien. Vor der Umsetzung einer Story kann die
+Checkliste aus diesem Dokument darauf angewendet werden. Da es sich um ein
+Lernprojekt handelt, darf die Checkliste bei Bedarf vereinfacht werden.

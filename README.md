@@ -88,4 +88,5 @@ separate Datenbank.
 - `backend/`: FastAPI-Endpunkte, Fachlogik und JSON-Dateispeicherung
 - `app/`: älterer HTML-/JavaScript-Prototyp, unabhängig von der Vue-App
 - `docs/architecture.md`: Beschreibung der Architektur und Technologieauswahl
-- `docs/definition_of_ready.md`: User Stories und Akzeptanzkriterien
+- `docs/user-stories.md`: Übersicht der User Stories und Akzeptanzkriterien
+- `docs/definition_of_ready.md`: Vorschlag für die Definition of Ready

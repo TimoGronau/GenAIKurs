@@ -1,7 +1,7 @@
 # Architektur – Rezept-App „Kochbuch"
 
 Dieses Dokument beschreibt den Tech-Stack und die Architektur für die Rezept-App,
-die in den [User Stories](definition_of_ready.md) (US-01 bis US-12) beschrieben ist.
+die in den [User Stories](user-stories.md) (US-01 bis US-12) beschrieben ist.
 
 Es ist bewusst für **Einsteiger in die moderne Web-Entwicklung** geschrieben und
 erklärt nicht nur *was*, sondern auch *warum* eine Technologie gewählt wurde.
@@ -99,6 +99,7 @@ flowchart LR
 GenAIKurs/
 ├─ app/                    # bestehender Prototyp (bleibt als Referenz)
 ├─ docs/
+│  ├─ user-stories.md
 │  ├─ definition_of_ready.md
 │  └─ architecture.md      # dieses Dokument
 │

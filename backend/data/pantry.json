@@ -1,7 +1,44 @@
 [
-  { "id": "p0000001", "name": "Spaghetti", "amount": 500, "unit": "g" },
-  { "id": "p0000002", "name": "Knoblauch", "amount": 5, "unit": "Stk" },
-  { "id": "p0000003", "name": "Olivenöl", "amount": 500, "unit": "ml" },
-  { "id": "p0000004", "name": "Eier", "amount": 6, "unit": "Stk" },
-  { "id": "p0000005", "name": "Butter", "amount": 250, "unit": "g" }
+  {
+    "id": "p0000001",
+    "name": "Spaghetti",
+    "amount": 500,
+    "unit": "g"
+  },
+  {
+    "id": "p0000002",
+    "name": "Knoblauch",
+    "amount": 5,
+    "unit": "Stk"
+  },
+  {
+    "id": "p0000003",
+    "name": "Olivenöl",
+    "amount": 500,
+    "unit": "ml"
+  },
+  {
+    "id": "p0000004",
+    "name": "Eier",
+    "amount": 6,
+    "unit": "Stk"
+  },
+  {
+    "id": "p0000005",
+    "name": "Butter",
+    "amount": 250,
+    "unit": "g"
+  },
+  {
+    "name": "Zwiebeln",
+    "amount": 5.0,
+    "unit": "Stk",
+    "id": "21664d30"
+  },
+  {
+    "name": "Wurst",
+    "amount": 500.0,
+    "unit": "g",
+    "id": "1916ec06"
+  }
 ]

@@ -1,6 +1,6 @@
 # Kochbuch-App
 
-Umsetzung der User Stories aus [`docs/definition_of_ready.md`](../docs/definition_of_ready.md).
+Umsetzung der User Stories aus [`docs/user-stories.md`](../docs/user-stories.md).
 Reines HTML/CSS/JavaScript, kein Build, keine Abhängigkeiten. Die Daten bleiben per `localStorage` im Browser gespeichert.
 
 ## Starten
