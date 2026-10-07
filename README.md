@@ -72,6 +72,29 @@ npm run preview
 Der Preview-Server zeigt eine lokale Adresse an. Das Backend muss weiterhin
 separat laufen, damit Rezepte und Vorrat geladen und gespeichert werden können.
 
+## Tests ausführen
+
+Die Backend-Tests benötigen zusätzliche Entwicklungsabhängigkeiten. Einmalig
+vom Projektstamm installieren:
+
+```powershell
+backend\.venv\Scripts\python.exe -m pip install -r backend\requirements-dev.txt
+```
+
+Backend-Fachlogik und API-Tests ausführen:
+
+```powershell
+cd backend
+.venv\Scripts\python.exe -m pytest tests
+```
+
+Frontend-Komponententests ausführen:
+
+```powershell
+cd frontend
+npm test
+```
+
 ## Daten
 
 Die Beispieldaten und alle Änderungen liegen in:
@@ -88,5 +111,6 @@ separate Datenbank.
 - `backend/`: FastAPI-Endpunkte, Fachlogik und JSON-Dateispeicherung
 - `app/`: älterer HTML-/JavaScript-Prototyp, unabhängig von der Vue-App
 - `docs/architecture.md`: Beschreibung der Architektur und Technologieauswahl
+- `docs/definition_done.md`: Qualitätskriterien für abgeschlossene Implementierungen
 - `docs/user-stories.md`: Übersicht der User Stories und Akzeptanzkriterien
 - `docs/definition_of_ready.md`: Vorschlag für die Definition of Ready
