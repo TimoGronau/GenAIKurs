@@ -1,0 +1,7 @@
+[
+  { "id": "p0000001", "name": "Spaghetti", "amount": 500, "unit": "g" },
+  { "id": "p0000002", "name": "Knoblauch", "amount": 5, "unit": "Stk" },
+  { "id": "p0000003", "name": "Olivenöl", "amount": 500, "unit": "ml" },
+  { "id": "p0000004", "name": "Eier", "amount": 6, "unit": "Stk" },
+  { "id": "p0000005", "name": "Butter", "amount": 250, "unit": "g" }
+]
